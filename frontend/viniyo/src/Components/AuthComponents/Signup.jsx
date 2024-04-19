@@ -20,14 +20,14 @@ import axios from 'axios';
           };    
           try {
             
-            await axios.post(`http://localhost:3000/register`, userData)
+            await axios.post(`http://localhost:3000/user/register`, userData)
             .then(res=>console.log(res));
             
             setRegistered(false)
             setSuccess(true);
-            // setTimeout(() => {
-            //   Navigate("/");
-            // }, 1000);
+            setTimeout(() => {
+              Navigate("/login");
+            }, 1000);
           } catch (error) {
             console.error(error);
             setRegistered(true)

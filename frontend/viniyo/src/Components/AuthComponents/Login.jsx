@@ -8,7 +8,7 @@ import { loginUser } from "../../Redux/Reducer/UserReducer";
 function Login() {
  const dispatch=useDispatch();
  const [user, setUser] = useState({email:"", password:""});
-//  const navigate = useNavigate();
+ const navigate = useNavigate();
  
 
  const [open, setOpen] = useState(false)
@@ -18,7 +18,7 @@ const handleLoginSubmit = async (e) => {
     e.preventDefault();
     setOpen(true)
     try{
-     const res = await axios.post("http://localhost:3000/login", user)
+     const res = await axios.post("http://localhost:3000/user/login", user)
      console.log(res);
      if(res?.status === 200){
        setUser({email:"", password:""})
@@ -28,7 +28,9 @@ const handleLoginSubmit = async (e) => {
        console.log(res.data.token)
        localStorage.setItem("email", res.data.email)
       
-      
+       setTimeout(() => {
+        navigate("/");
+      }, 1000);
      
        dispatch(loginUser(user))
     }

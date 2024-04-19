@@ -5,6 +5,7 @@ const bodyparser=require("body-parser");
 const route=require("./router/user")
 const restrouter=require("./router/restaurant")
 const order=require("./router/order")
+const pay=require("./router/payment");
 require('dotenv').config();
 
 const app=express();
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use("/user",route);
 app.use("/rest",restrouter);
 app.use("/order",order);
+app.use("/payment",pay)
 
 
 

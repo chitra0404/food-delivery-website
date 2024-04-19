@@ -1,5 +1,5 @@
 import {configureStore} from "@reduxjs/toolkit";
-import userSlice from "./Reducer/UserReducer";
+import UserReducer from "./Reducer/UserReducer";
 export default configureStore({
-   reducer:{ userInfo:userSlice }
+   reducer:{ user:UserReducer }
 })

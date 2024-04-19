@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext, useState,useRef } from 'react'
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes,useLocation } from "react-router-dom";
 
@@ -14,6 +14,7 @@ import Cart from './Components/Cart.jsx';
 import FoodItem from './Components/FoodItem.jsx';
 import NavBar from './Components/NavBar.jsx';
 import Home from './Components/Home.jsx';
+import ProtectedRestaurantList from './Redux/ProtectedResturantList.jsx';
 
 function App() {
   const {selectedRestaurant}=useContext(RestaurantContext)
@@ -26,12 +27,12 @@ function App() {
       <Routes>
       <Route path="/" element={<Home />} />
     <Route path="/cart" element={<Cart />} />
-             <Route path="/rest" element={<RestaurantList />} />
+             <Route path="/rest" element={<ProtectedRestaurantList/>} />
              <Route path="/signin" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             </Routes>
     </Router>
-    {selectedRestaurant && <FoodItem />}
+    
 
     {/* <div className="container">
         <h1 className="header">VINIYO</h1>

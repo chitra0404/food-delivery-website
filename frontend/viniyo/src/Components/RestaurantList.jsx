@@ -1,16 +1,19 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect,useRef } from 'react';
 import Resturant from './Resturant';
 import {RestaurantContext} from "../context/RestaurantContext";
 import PastOder from './PastOder';
 import { Navigate } from 'react-router-dom';
+import FoodItem from './FoodItem';
 
 
 function RestaurantList() {
-    const { restaurants, setSelectedRestaurant } = useContext(RestaurantContext);
+    const { restaurants, setSelectedRestaurant,selectedRestaurant } = useContext(RestaurantContext);
     console.log(restaurants)
     const [filteredRestaurants, setFilteredRestaurants] = useState([restaurants]);
     const [ratingFilter, setRatingFilter] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
+    const menuRef = useRef(null);
+
    
 
     useEffect(() => {
@@ -20,7 +23,7 @@ function RestaurantList() {
     const handleRestaurantClick = (restaurantId) => {
 const rest=(restaurants.find((restaurant) => restaurant._id === restaurantId));
 setSelectedRestaurant(rest);
-
+scrollToMenu();
     };
  
     const handleRatingChange = (e) => {
@@ -47,7 +50,9 @@ setSelectedRestaurant(rest);
  
         setFilteredRestaurants(filtered);
     };
-  
+    const scrollToMenu = () => {
+        menuRef.current.scrollIntoView({ behavior: 'smooth' });
+      };
 
   return (
     <div className="container pt-5">
@@ -98,6 +103,7 @@ setSelectedRestaurant(rest);
             </div>
             
  </div>
+ {selectedRestaurant && <div ref={menuRef} ><FoodItem /></div>}
         </div>
   )
 }
